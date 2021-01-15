@@ -8,7 +8,7 @@ namespace SweetSavory.Models
   public class SweetSavoryContextFactory : IDesignTimeDbContextFactory<SweetSavoryContext>
   {
 
-    SweetSavoryContext IDesignTimeDbContextFactory<SavoryContext>.CreateDbContext(string[] args)
+    SweetSavoryContext IDesignTimeDbContextFactory<SweetSavoryContext>.CreateDbContext(string[] args)
     {
       IConfigurationRoot configuration = new ConfigurationBuilder()
           .SetBasePath(Directory.GetCurrentDirectory())
