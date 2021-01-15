@@ -20,11 +20,11 @@ namespace SweetSavory.Controllers
     public ActionResult Index()
     {
       Dictionary<object, object> model = new Dictionary<object, object>();
-      List<Flavor> Flavors = _db.Flavors.ToList();
-      List<Treat> Treats = _db.Treats.ToList();
+      List<Flavor> flavors = _db.Flavors.ToList();
+      List<Treat> treats = _db.Treats.ToList();
       model.Add("flavors", flavors);
       model.Add("treats", treats);
-      return View();
+      return View(model);
     }
   }
 

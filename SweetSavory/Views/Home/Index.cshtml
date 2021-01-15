@@ -9,3 +9,33 @@
 </div>
 
 <p>@Html.ActionLink("Create an account", "Index", "Account")</p>
+
+<h3>Current Flavors We Offer</h3>
+<ul>
+    @foreach (Flavor flavor in @Model["flavors"])
+    {
+        <div class="card">
+            <div class="card-body">
+                <ol class="card-text">
+                    <li>@Html.ActionLink($"{flavor.FlavorName}", "Details", "Flavors", new {id = flavor.FlavorId}) </li>
+                </ol>
+            </div>
+        </div>
+    }
+</ul>
+
+<h3>Current Treats We Offer</h3>
+<ul>
+    @foreach (Treat treat in @Model["treats"])
+    {
+        <div class="card">
+            <div class="card-body">
+                <ol class="card-text">
+                    <li>@Html.ActionLink($"{treat.TreatName}", "Details", "Treats", new {id = treat.TreatId}) </li>
+                </ol>
+            </div>
+        </div>
+    }
+</ul>
+
+
