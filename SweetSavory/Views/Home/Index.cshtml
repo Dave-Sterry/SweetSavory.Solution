@@ -9,7 +9,8 @@
 </div>
 
 <p>@Html.ActionLink("Create an account", "Index", "Account")</p>
-
+<p>@Html.ActionLink("Add some new Treats", "Index", "Treats")</p>
+<p>@Html.ActionLink("Add some new Flavors", "Index", "Flavors")</p>
 <h3>Current Flavors We Offer</h3>
 <ul>
     @foreach (Flavor flavor in @Model["flavors"])

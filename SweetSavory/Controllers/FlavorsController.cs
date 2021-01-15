@@ -19,6 +19,7 @@ namespace SweetSavory.Controllers
     private readonly UserManager<ApplicationUser> _userManager;
     public FlavorsController(UserManager<ApplicationUser> userManager, SweetSavoryContext db)
     {
+      _userManager = userManager;
       _db = db;
     }
     
@@ -32,6 +33,7 @@ namespace SweetSavory.Controllers
 
     public ActionResult Create()
     {
+      ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "TreatName");
       return View();
     }
 
