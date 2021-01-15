@@ -16,7 +16,7 @@ namespace SweetSavory.Models
 
     [DisplayName("Flavor Name")]
     public string FlavorName { get; set; }
-    
+    public virtual ApplicationUser User { get; set; }
 
     public virtual ICollection<FlavorTreat> JoinEntries { get; set; }
   }
