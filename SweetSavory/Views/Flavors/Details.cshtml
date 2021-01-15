@@ -1,0 +1,27 @@
+@{
+  Layout = "_Layout";
+}
+
+@model SweetSavory.Models.Flavor
+
+<h2>Flavor Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.FlavorName): @Html.DisplayFor(model =>model.FlavorName)</h3>
+
+@if(@Model.JoinEntries.Count = 0)
+{
+  <p>This Flavor isn't on any Treats!</p>
+}
+else 
+{
+  <h4>Treats for this Flavor is on</h4>
+  @foreach(var join in Model.JoinEntries)
+  {
+    <li>@join.Treat.TreatName</li>
+    @using (Html.BeginForm("DeleteTreat", "Flavors"))
+    {
+      @Html.Hidden("joinId", @join.FlavorTreatId)
+      <input type="submit" value="Delete" />
+    }
+  }
+}
