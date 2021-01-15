@@ -108,10 +108,8 @@ namespace SweetSavory.Controllers
       return RedirectToAction("Index");
     }
 
-    public async Task<ActionResult> AddTreat(int id)
+    public ActionResult AddTreat(int id)
     {
-      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      var currentUser = await _userManager.FindByIdAsync(userId);
       var thisFlavor = _db.Flavors.FirstOrDefault(flavors => flavors.FlavorId == id);
       ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "TreatName");
       return View (thisFlavor);

@@ -4,21 +4,30 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace SweetSavory.Controllers
 {
+  [Authorize]
   public class TreatsController : Controller
   {
     private readonly SweetSavoryContext _db;
+    private readonly UserManager<ApplicationUser> _userManager;
 
-    public TreatsController(SweetSavoryContext db)
+    public TreatsController(UserManager<ApplicationUser> userManager, SweetSavoryContext db)
     {
       _db = db;
     }
 
-    public ActionResult Index()
+    public async Task<ActionResult> Index()
     {
-      return View(_db.Treats.ToList());
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      var userTreats = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).ToList();
+      return View(userTreats);
     }
 
     public ActionResult Create()
@@ -28,8 +37,10 @@ namespace SweetSavory.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(Treat treat, int FlavorId)
+    public async Task<ActionResult> Create(Treat treat, int FlavorId)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
       _db.Treats.Add(treat);
       if (FlavorId != 0)
       {
@@ -56,8 +67,11 @@ namespace SweetSavory.Controllers
     }
 
     [HttpPost]
-    public ActionResult Edit(Treat treat, int FlavorId)
+    public async Task<ActionResult> Edit(Treat treat, int FlavorId)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+
       if (FlavorId !=0)
       {
         _db.FlavorTreat.Add(new FlavorTreat() { FlavorId = FlavorId, TreatId = treat.TreatId });
@@ -75,8 +89,10 @@ namespace SweetSavory.Controllers
     }
 
     [HttpPost]
-    public ActionResult AddFlavor(Treat treat, int FlavorId)
+    public async Task<ActionResult> AddFlavor(Treat treat, int FlavorId)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
       if(FlavorId !=0)
       {
         var returnedJoin = _db.FlavorTreat.Any(join => join.TreatId == treat.TreatId && join.FlavorId == FlavorId);
@@ -97,8 +113,10 @@ namespace SweetSavory.Controllers
     }
 
     [HttpPost, ActionName("Delete")]
-    public ActionResult DeleteConfirmed(int id)
+    public async Task<ActionResult> DeleteConfirmed(int id)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
       var thisTreat = _db.Treats.FirstOrDefault(treats => treats.TreatId == id);
       _db.Treats.Remove(thisTreat);
       _db.SaveChanges();
@@ -106,8 +124,10 @@ namespace SweetSavory.Controllers
     }
 
     [HttpPost]
-    public ActionResult DeleteFlavor(int joinId)
+    public async Task<ActionResult> DeleteFlavor(int joinId)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
       var joinEntry = _db.FlavorTreat.FirstOrDefault(entry => entry.FlavorId == joinId);
       _db.FlavorTreat.Remove(joinEntry);
       _db.SaveChanges();
