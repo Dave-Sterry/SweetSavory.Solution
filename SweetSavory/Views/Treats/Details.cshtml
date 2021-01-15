@@ -3,12 +3,13 @@
 }
 
 @model SweetSavory.Models.Treat
+@using System.Security.Claims
 
 <h2>Treat Details</h2>
 <hr />
 <h3>@Html.DisplayNameFor(model => model.TreatName): @Html.DisplayFor(model =>model.TreatName)</h3>
 
-@if(@Model.JoinEntries.Count = 0)
+@if(@Model.JoinEntries.Count == 0)
 {
   <p>This Flavor isn't on any Treats!</p>
 }

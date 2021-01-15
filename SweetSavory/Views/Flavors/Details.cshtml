@@ -4,11 +4,12 @@
 
 @model SweetSavory.Models.Flavor
 
+
 <h2>Flavor Details</h2>
 <hr />
 <h3>@Html.DisplayNameFor(model => model.FlavorName): @Html.DisplayFor(model =>model.FlavorName)</h3>
 
-@if(@Model.JoinEntries.Count = 0)
+@if(@Model.JoinEntries.Count == 0)
 {
   <p>This Flavor isn't on any Treats!</p>
 }
