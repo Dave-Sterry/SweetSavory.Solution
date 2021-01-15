@@ -1,24 +1,21 @@
-# Dr Sillystringz's Factory
+# Pierre's Sweet and Savory Treats
 <div align="center">
 <img src="https://github.com/Dave-Sterry.png" width="200px" height="auto">
 </div>
 
 ### A C# website by David Sterry 
-Initialized on 01/08/21
-Last updated on 01/008/21
+Initialized on 01/15/21
+Last updated on 01/15/21
 
 
 ## **Project Description**
 
-This website allows the manager of a Sillystring factor to manage their machines and engineers. Machines and enigneers can be added seperately, and then assigned to each other. This was a Friday independent project for Epicodus to further my knowledge of using MySQL, join tables and many to many relationships along with CRUD functionality.  
+This simple C# website is designed to help Pierre market his sweet and savory treats. Users will have to create an account, once they do they can log in and create, update and delete Treats and Flavors. If they click on a Treat or Flavor they will see all the Treats of Flavors assigned to it. This was a Friday independent project for epicodus, to showcase using Identity for Authentication, along with many to many relationship database managment. 
 
 ## **User Stories**
-* As the factory manager, I need to be able to see a list of all engineers, and I need to be able to see a list of all machines.
-* As the factory manager, I need to be able to select a engineer, see their details, and see a list of all machines that engineer is licensed to repair. I also need to be able to select a machine, see its details, and see a list of all engineers licensed to repair it.
-* As the factory manager, I need to add new engineers to our system when they are hired. I also need to add new machines to our system when they are installed.
-* As the factory manager, I should be able to add new machines even if no engineers are employed. I should also be able to add new engineers even if no machines are installed
-* As the factory manager, I need to be able to add or remove machines that a specific engineer is licensed to repair. I also need to be able to modify this relationship from the other side, and add or remove engineers from a specific machine.
-* I should be able to navigate to a splash page that lists all engineers and machines. Users should be able to click on an individual engineer or machine to see all the engineers/machines that belong to it.
+* The application should have user authentication. A user should be able to log in and log out. Only logged in users should have create, update and delete functionality. All users should be able to have read functionality.
+* There should be a many-to-many relationship between Treats and Flavors. A treat can have many flavors (such as sweet, savory, spicy, or creamy) and a flavor can have many treats. For instance, the "sweet" flavor could include chocolate croissants, cheesecake, and so on.
+* A user should be able to navigate to a splash page that lists all treats and flavors. Users should be able to click on an individual treat or flavor to see all the treats/flavors that belong to it.
 
 
 
@@ -34,12 +31,12 @@ This website allows the manager of a Sillystring factor to manage their machines
 ## **How to get this project** 
 
 ### Download from Github:
-1. Use the browser navigate to my GitHub page [respository](https://github.com/Dave-Sterry/Factory.Solution)
+1. Use the browser navigate to my GitHub page [respository](https://github.com/Dave-Sterry/SweetSavory.Solution)
 2. Click the Green **Code** button and select **Download Zip**
 
 ### Alternatively clone from Github via Gitbash:
 1. In your terminal, navigate to the folder where you would like to clone the project too
-2. Clone this repo to your chosen folder using "git clone https://github.com/Dave-Sterry/Factory.Solution in terminal
+2. Clone this repo to your chosen folder using "git clone https://github.com/Dave-Sterry/SweetSavory.Solution in terminal
 
 
 ## **Installation Instructions**
@@ -52,15 +49,14 @@ AppSettings
 ```
 {
   "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Port=3306;database=david_sterry;uid=YourId;pwd=YourPassword;"
+      "DefaultConnection": "Server=localhost;Port=3306;database=david_sterry1;uid=YourId;pwd=YourPassword;"
   }
 }
 ```
 * Update the Server, Port, and User ID as needed with your own
 
 Import Database using Entity Framework Core
-* Navigate to UniversityRegistrar.Solution/UniversityTracker and type `dotnet ef migrations add <MigrationName>` into the terminal
-* Then, type `dotnet ef database update` into the terminal to create your database tables.
+* Navigate to SweetSavory.Solution/SweetSavory and type `dotnet ef database update` into the terminal. This will update the existing migrations 
 
 
 ## **SQL Schema**
@@ -110,16 +106,14 @@ CREATE TABLE `Machines` (
   PRIMARY KEY (`MachineId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
-You can now type the follow code into your terminal to launch the program.
 
-<code>dotnet run</code>
+## **Viewing the Project**
+* Navitagate to SweetSavor.Solutions/SweetSavory in your terminal, and run the command `dotnet run` The program should launch using your default web browser. If it does not launch, navigate to the site at URL localhost:5000 in your favorite browser. 
 
-The program should launch using your default web browser at URL: localhost:5000.
-
-SQL Database Design
+<!-- SQL Database Design
 <center>
 <img style="width: 50% height: 50%" src="./ReadMeAssets/FactoryDB.png">
-</center>
+</center> -->
 
 
 ## **Known Bugs**
@@ -136,6 +130,7 @@ There are no known bugs
 * Bootstrap
 * Razor
 * dotnet script, REPL
+* Identity 
   
 ## **Authors and Contributors**
 Authored by: David Sterry
