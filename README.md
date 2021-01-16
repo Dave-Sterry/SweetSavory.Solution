@@ -62,10 +62,7 @@ Import Database using Entity Framework Core
 ## **Viewing the Project**
 * Navitagate to SweetSavor.Solutions/SweetSavory in your terminal, and run the command `dotnet run` The program should launch using your default web browser. If it does not launch, navigate to the site at URL localhost:5000 in your favorite browser. 
 
-<!-- SQL Database Design
-<center>
-<img style="width: 50% height: 50%" src="./ReadMeAssets/FactoryDB.png">
-</center> -->
+
 
 
 ## **Known Bugs**
