@@ -59,54 +59,6 @@ Import Database using Entity Framework Core
 * Navigate to SweetSavory.Solution/SweetSavory and type `dotnet ef database update` into the terminal. This will update the existing migrations 
 
 
-## **SQL Schema**
-
-DB SQL Schema Snippet
-* Paste this Schema Create Statement into your SQL Workbench to create this database and its tables.
-```
-CREATE DATABASE  IF NOT EXISTS `david_sterry` 
-
-DROP TABLE IF EXISTS `__EFMigrationsHistory`;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `__EFMigrationsHistory` (
-  `MigrationId` varchar(95) NOT NULL,
-  `ProductVersion` varchar(32) NOT NULL,
-  PRIMARY KEY (`MigrationId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-DROP TABLE IF EXISTS `Engineers`;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `Engineers` (
-  `EngineerId` int(11) NOT NULL AUTO_INCREMENT,
-  `EngineerName` longtext,
-  `HireDate` datetime(6) NOT NULL DEFAULT '0001-01-01 00:00:00.000000',
-  PRIMARY KEY (`EngineerId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-DROP TABLE IF EXISTS `MachineEnigneer`;
-
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `MachineEnigneer` (
-  `MachineEngineerId` int(11) NOT NULL AUTO_INCREMENT,
-  `MachineId` int(11) NOT NULL,
-  `EngineerId` int(11) NOT NULL,
-  PRIMARY KEY (`MachineEngineerId`),
-  KEY `IX_MachineEnigneer_EngineerId` (`EngineerId`),
-  KEY `IX_MachineEnigneer_MachineId` (`MachineId`),
-  CONSTRAINT `FK_MachineEnigneer_Engineers_EngineerId` FOREIGN KEY (`EngineerId`) REFERENCES `engineers` (`EngineerId`) ON DELETE CASCADE,
-  CONSTRAINT `FK_MachineEnigneer_Machines_MachineId` FOREIGN KEY (`MachineId`) REFERENCES `machines` (`MachineId`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-DROP TABLE IF EXISTS `Machines`;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `Machines` (
-  `MachineId` int(11) NOT NULL AUTO_INCREMENT,
-  `MachineName` longtext,
-  `InstallDate` datetime(6) NOT NULL DEFAULT '0001-01-01 00:00:00.000000',
-  PRIMARY KEY (`MachineId`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-```
-
 ## **Viewing the Project**
 * Navitagate to SweetSavor.Solutions/SweetSavory in your terminal, and run the command `dotnet run` The program should launch using your default web browser. If it does not launch, navigate to the site at URL localhost:5000 in your favorite browser. 
 
