@@ -4,7 +4,8 @@
 
 @model SweetSavory.Models.Flavor
 
-<h4>Edit a Flavor</h4>
+<h4>Edit</h4>
+<h4>Edit this Flavor:@Html.DisplayFor(model => model.FlavorName)</h4>
 @using (Html.BeginForm())
 {
   @Html.HiddenFor(model => model.FlavorName)
@@ -14,4 +15,4 @@
 
   <input type="submit" value="Edit" />
 }
-<p>@Html.ActionLink("Show all Flavors", "Index")</p>
+<p>@Html.ActionLink("Back to Flavors", "Index")</p>

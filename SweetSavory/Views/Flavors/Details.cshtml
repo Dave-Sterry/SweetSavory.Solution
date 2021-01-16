@@ -11,11 +11,14 @@
 
 @if(@Model.JoinEntries.Count == 0)
 {
-  <p>This Flavor isn't on any Treats!</p>
+  <p>This Flavor has no Treats</p>
 }
 else 
 {
-  <h4>Treats for this Flavor is on</h4>
+  <h4>This Flavor is on the following Treats:</h4>
+}
+
+<ul>
   @foreach(var join in Model.JoinEntries)
   {
     <li>@join.Treat.TreatName</li>
@@ -25,4 +28,8 @@ else
       <input type="submit" value="Delete" />
     }
   }
-}
+  </ul>
+  <p>@Html.ActionLink("Add a Treat", "AddTreat", new { id = Model.FlavorId})</p>
+  <p>@Html.ActionLink("Back to list", "Index")</p>
+  <p>@Html.ActionLink("Edit Flavor", "Edit", new { id = Model.FlavorId})</p>
+  <p>@Html.ActionLink("Delete Flavor", "Delete", new {id = Model.FlavorId})</p>

@@ -8,10 +8,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Security.Claims;
+using System; 
 
 namespace SweetSavory.Controllers
 {
-  [Authorize]
+  
 
   public class FlavorsController : Controller
   {
@@ -23,14 +24,13 @@ namespace SweetSavory.Controllers
       _db = db;
     }
     
-    public async Task<ActionResult> Index()
+    public ActionResult Index()
     {
-      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      var currentUser = await _userManager.FindByIdAsync(userId);
-      var userFlavors = _db.Flavors.Where(entry => entry.User.Id == currentUser.Id).ToList();
-      return View(userFlavors);
+      var allFlavors = _db.Flavors.ToList();
+      return View(allFlavors);
     }
 
+    [Authorize]
     public ActionResult Create()
     {
       ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "TreatName");
@@ -64,19 +64,20 @@ namespace SweetSavory.Controllers
     public ActionResult Edit(int id)
     {
       var thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
+      // ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "TreatName");
       return View(thisFlavor);
     }
 
     [HttpPost]
-    public async Task<ActionResult> Edit (Flavor flavor, int TreatId)
+    public ActionResult Edit(Flavor flavor)
     {
-      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      var currentUser = await _userManager.FindByIdAsync(userId);
+      // var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      // var currentUser = await _userManager.FindByIdAsync(userId);
 
-      if (TreatId !=0)
-      {
-        _db.FlavorTreat.Add( new FlavorTreat() {TreatId = TreatId, FlavorId = flavor.FlavorId });
-      }
+      // if(TreatId!=0)
+      // {
+      //   _db.FlavorTreat.Add(new FlavorTreat() { TreatId = TreatId, FlavorId = flavor.FlavorId});
+      // }
       _db.Entry(flavor).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index");
