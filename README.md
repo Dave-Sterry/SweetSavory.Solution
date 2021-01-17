@@ -66,7 +66,7 @@ Import Database using Entity Framework Core
 
 
 ## **Known Bugs**
-There are no known bugs
+If an user who is not logged in views the details of a Flavor or Treat and attempst to edit or delete them. The site returns an error (1/17/21)
 
 ## **Technology Used**
 * C# 7.3
