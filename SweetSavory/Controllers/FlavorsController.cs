@@ -41,7 +41,6 @@ namespace SweetSavory.Controllers
     }
 
     
-    
     //Authorized Routes
     
     [Authorize]
