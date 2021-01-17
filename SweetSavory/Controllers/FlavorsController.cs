@@ -77,11 +77,11 @@ namespace SweetSavory.Controllers
     [HttpPost]
     public ActionResult Edit(Flavor flavor)
     {
-      if(_db.Entry(flavor).State ==EntityState.Modified)
-      {
+      // if(_db.Entry(flavor).State ==EntityState.Modified)
+      // {
         _db.Entry(flavor).State = EntityState.Modified;
         _db.SaveChanges(); 
-      }
+      // }
       return RedirectToAction("Index");
     }
 

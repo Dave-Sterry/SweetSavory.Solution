@@ -78,13 +78,14 @@ namespace SweetSavory.Controllers
     [HttpPost]
     public ActionResult Edit(Treat treat)
     {
-      if (_db.Entry(treat).State ==EntityState.Modified)
-      {
+      // if (_db.Entry(treat).State == EntityState.Modified)
+      // {
         _db.Entry(treat).State = EntityState.Modified;
         _db.SaveChanges();
-      }
+      // }
       return RedirectToAction("Index");
     }
+    
 
     
     [Authorize]
@@ -92,7 +93,7 @@ namespace SweetSavory.Controllers
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
-      var thisTreat = _db.Treats.Where(entry =>entry.User.Id == currentUser.Id).FirstOrDefault(treat=>treat.TreatId == id);
+      var thisTreat = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(treat=>treat.TreatId == id);
       if(thisTreat == null)
       {
         return RedirectToAction("Details", new{id=id});
@@ -141,9 +142,9 @@ namespace SweetSavory.Controllers
     }
 
     [HttpPost]
-    public ActionResult DeleteFlavor(int joinId)
+    public ActionResult DeleteFlavor(int joinId, int TreatId)
     {
-      var joinEntry = _db.FlavorTreat.FirstOrDefault(entry => entry.FlavorId == joinId);
+      var joinEntry = _db.FlavorTreat.FirstOrDefault(entry => entry.FlavorTreatId == joinId);
       _db.FlavorTreat.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index");

@@ -8,7 +8,7 @@
 <h4>Edit this Treat:@Html.DisplayFor(model => model.TreatName)</h4>
 @using (Html.BeginForm())
 {
-  @Html.HiddenFor(model => model.TreatName)
+  @Html.HiddenFor(model => model.TreatId)
 
   @Html.LabelFor(model => model.TreatName)
   @Html.EditorFor(model => model.TreatName)

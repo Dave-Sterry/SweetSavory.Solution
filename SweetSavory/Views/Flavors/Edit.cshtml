@@ -1,18 +1,17 @@
 @{
   Layout = "_Layout";
 }
-
 @model SweetSavory.Models.Flavor
 
 <h4>Edit</h4>
 <h4>Edit this Flavor:@Html.DisplayFor(model => model.FlavorName)</h4>
 @using (Html.BeginForm())
 {
-  @Html.HiddenFor(model => model.FlavorName)
+  @Html.HiddenFor(model => model.FlavorId)
 
   @Html.LabelFor(model => model.FlavorName)
   @Html.EditorFor(model => model.FlavorName)
 
-  <input type="submit" value="Edit" />
+  <input type="submit" value="Save" class="btn btn-into"/>
 }
 <p>@Html.ActionLink("Back to Flavors", "Index")</p>
