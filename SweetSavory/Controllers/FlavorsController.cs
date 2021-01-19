@@ -106,7 +106,7 @@ namespace SweetSavory.Controllers
       return RedirectToAction("Index");
     }
 
-  
+    [Authorize]  
     public async Task<ActionResult> AddTreat(int id)
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
