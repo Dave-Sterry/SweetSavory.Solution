@@ -84,7 +84,7 @@ namespace SweetSavory.Controllers
       // }
       return RedirectToAction("Index");
     }
-
+    [Authorize]
     public async Task<ActionResult> Delete(int id)
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
